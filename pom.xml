@@ -37,12 +37,15 @@
       <artifactId>jansi-native</artifactId>
       <classifier>windows32</classifier>
       <version>1.5</version>
+      <scope>runtime</scope>
     </dependency>
+
     <dependency>
       <groupId>org.fusesource.jansi</groupId>
       <artifactId>jansi-native</artifactId>
       <classifier>windows64</classifier>
       <version>1.5</version>
+      <scope>runtime</scope>
     </dependency>
 
     <dependency>
