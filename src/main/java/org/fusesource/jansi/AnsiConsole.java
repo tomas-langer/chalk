@@ -33,6 +33,7 @@ import static org.fusesource.jansi.internal.CLibrary.*;
  * @since 1.0
  */
 public class AnsiConsole {
+    private static boolean isColorEnabled = true;
 
     public static final PrintStream system_out = System.out;
     public static final PrintStream out = new PrintStream(wrapOutputStream(system_out));
@@ -41,7 +42,7 @@ public class AnsiConsole {
     public static final PrintStream err = new PrintStream(wrapOutputStream(system_err, STDERR_FILENO));
 
     private static int installed;
-    private static boolean isColorEnabled = true;
+
 
     public static OutputStream wrapOutputStream(final OutputStream stream) {
         return wrapOutputStream(stream, STDOUT_FILENO);

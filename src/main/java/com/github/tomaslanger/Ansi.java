@@ -9,7 +9,9 @@ package com.github.tomaslanger;
  *
  * @author Tomas Langer (tomas.langer@gmail.com)
  */
-public class Ansi {
+public final class Ansi {
+    private Ansi() {}
+
     /**
      * Common methods for all types of Ansi modifications.
      */

@@ -19,22 +19,21 @@ import org.fusesource.jansi.AnsiConsole;
  * @author Tomas Langer (tomas.langer@gmail.com)
  */
 public class Chalk {
-    private static final boolean enabled;
+    private static boolean colorEnabled;
 
     static {
-        boolean isEnabled;
+
         try {
             AnsiConsole.systemInstall();
-            isEnabled = AnsiConsole.isColorEnabled();
+            colorEnabled = AnsiConsole.isColorEnabled();
         } catch (java.lang.UnsatisfiedLinkError e) {
             //this is some kind of non-windoze system, assume support.
-            isEnabled = !Boolean.getBoolean("jansi.strip");
+            colorEnabled = !Boolean.getBoolean("jansi.strip");
         }
-
-        enabled = isEnabled;
     }
 
     private String text;
+
 
     private Chalk(final String text) {
         this.text = text;
@@ -43,11 +42,17 @@ public class Chalk {
     public static Chalk on(final String text) {
         //perf optimization - if not enabled, just do not escape (as it has to be de-escaped)
         String theText = (null == text?"null":text);
-        if (enabled) {
+
+
+        if (colorEnabled) {
             return new Chalk(theText);
         }else {
             return new NoOpChalk(theText);
         }
+    }
+
+    public static void setColorEnabled(final boolean colorEnabled) {
+        Chalk.colorEnabled = colorEnabled;
     }
 
     /**

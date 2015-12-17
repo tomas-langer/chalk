@@ -1,5 +1,7 @@
 package com.github.tomaslanger;
 
+import java.io.UnsupportedEncodingException;
+
 /**
  * Test class to show what this tool can do. Remove asap.
  * Now kept for Idea bug reproducer for https://youtrack.jetbrains.com/issue/IDEA-149450
@@ -57,8 +59,7 @@ public class Test {
     }
 
     @SuppressWarnings("deprecation")
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws UnsupportedEncodingException {
         Test chalkTest = new Test();
         chalkTest.testApply();
         chalkTest.testEscape();

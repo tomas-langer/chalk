@@ -1,9 +1,11 @@
 package com.github.tomaslanger;
 
+import org.fusesource.jansi.AnsiConsole;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Unit test for Chalk.
@@ -14,27 +16,25 @@ import static org.junit.Assert.*;
  *
  * @author Tomas Langer (tomas.langer@gmail.com)
  */
-public class ChalkTest {
+public class DisabledChalkTest {
     @BeforeClass
     public static void prepare() {
-        Chalk.setColorEnabled(true);
-    }
-
-    @Test
-    public void testEscape() {
-        checkAndPrint("FG blue", "\u001B[34mtext\u001B[39m", Chalk.on("text").blue().toString());
-        checkAndPrint("FG blue surrounded", "Green: \u001B[32mtext\u001B[39m, and normal", "Green: " + Chalk.on("text").green() + ", and normal");
-        checkAndPrint("BG red", "Back: \u001B[41mtext\u001B[49m, and normal", "Back: " + Chalk.on("text").bgRed() + ", and normal");
-        checkAndPrint("FG magenta underlined", "Combined \u001B[4m\u001B[35mtext\u001B[39m\u001B[24m, and normal", "Combined " + Chalk.on("text").magenta().underline() + ", and normal");
+        Chalk.setColorEnabled(false);
     }
 
     private void checkAndPrint(final String message, final String expected, final String actual) {
         System.out.println(message + ": " + expected + " : " + actual);
         assertEquals(message, expected, actual);
     }
-
     @Test
-    public void testApply() {
+    public void testNoOp() {
+
+
+        checkAndPrint("FG blue", "text", Chalk.on("text").blue().toString());
+        checkAndPrint("FG blue surrounded", "Green: text, and normal", "Green: " + Chalk.on("text").green() + ", and normal");
+        checkAndPrint("BG red", "Back: text, and normal", "Back: " + Chalk.on("text").bgRed() + ", and normal");
+        checkAndPrint("FG magenta underlined", "Combined text, and normal", "Combined " + Chalk.on("text").magenta().underline() + ", and normal");
+
         checkAndPrint("Modifier underline", Chalk.on("text").apply(Ansi.Modifier.UNDERLINE), Chalk.on("text").underline());
         checkAndPrint("Modifier bold", Chalk.on("text").apply(Ansi.Modifier.BOLD), Chalk.on("text").bold());
         checkAndPrint("Modifier inverse", Chalk.on("text").apply(Ansi.Modifier.INVERSE), Chalk.on("text").inverse());
@@ -60,23 +60,7 @@ public class ChalkTest {
         checkAndPrint("BG Magenta", Chalk.on("text").apply(Ansi.BgColor.MAGENTA), Chalk.on("text").bgMagenta());
         checkAndPrint("BG Cyan", Chalk.on("text").apply(Ansi.BgColor.CYAN), Chalk.on("text").bgCyan());
         checkAndPrint("BG White", Chalk.on("text").apply(Ansi.BgColor.WHITE), Chalk.on("text").bgWhite());
-    }
-
-
-    @Test
-    public void testUtilMethods() {
-        Chalk a = Chalk.on("text").red();
-        Chalk b = Chalk.on("text").red();
-        Chalk c = Chalk.on("text").blue();
-        Chalk d = Chalk.on("other").blue();
-
-        assertEquals("Same text, same modifiers - must be equal", a, b);
-        assertEquals("Same text, same modifiers - must have same hash code", a.hashCode(), b.hashCode());
-        assertNotEquals("Same text, different modifiers - must differ", a, c);
-        assertNotEquals("Same text, different modifiers - must differ", b, c);
-        assertNotEquals("Different text, same modifiers - must differ", c, d);
-        assertNotEquals("Different text, different modifiers - must differ", b, d);
-    }
+   }
 
     private void checkAndPrint(final String message, final Chalk expected, final Chalk actual) {
         System.out.println(message + ": " + expected + " : " + actual);

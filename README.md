@@ -36,7 +36,7 @@ System.out.println("This message is " + Chalk.on("IMPORTANT").red().underline())
 
 will print:
 
-This message is <u><font color="red">IMPORTANT</font></u>
+![screenshot](doc/colored_example.png)
 
 There are some system properties to control behavior:
 * jansi.strip - if set to "true", colors will not be sent to output (on any environment)
