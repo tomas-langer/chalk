@@ -3,7 +3,7 @@ package com.github.tomaslanger;
 import org.fusesource.jansi.AnsiConsole;
 
 /**
- * Chalk allows you to color output on the screen.
+ * Chalk allows you to color output going to console.
  *
  * User: tomas.langer
  * Date: 3.12.2015
@@ -21,7 +21,7 @@ public class Chalk {
             isEnabled = AnsiConsole.isColorEnabled();
         } catch (java.lang.UnsatisfiedLinkError e) {
             //this is some kind of non-windoze system, assume support.
-            isEnabled = true;
+            isEnabled = !Boolean.getBoolean("jansi.strip");
         }
 
         enabled = isEnabled;
@@ -97,8 +97,6 @@ public class Chalk {
     /**
      * Careful with gray - not supported on windows!!!
      * Will be black...
-     *
-     * @return
      */
     public Chalk gray() {
         return apply(Ansi.Color.GRAY);
@@ -114,7 +112,6 @@ public class Chalk {
 
     /**
      * WIll be highlighted in windows, not underlined
-     * @return
      */
     public Chalk underline() {
         return apply(Ansi.Modifier.UNDERLINE);

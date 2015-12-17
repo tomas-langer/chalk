@@ -1,19 +1,23 @@
 package com.github.tomaslanger;
 
 /**
- * TODO: Javadoc
+ * Test class to show what this tool can do. Remove asap.
+ * Now kept for Idea bug reproducer for https://youtrack.jetbrains.com/issue/IDEA-149450
  * User: Tomas.Langer
  * Date: 16.12.2015
  * Time: 13:30
  *
  * @author Tomas Langer (tomas.langer@gmail.com)
  */
+@Deprecated
 public class Test {
     public void testEscape() {
         checkAndPrint("FG blue", "\u001B[34mtext\u001B[39m", Chalk.on("text").blue().toString());
         checkAndPrint("FG blue surrounded", "Green: \u001B[32mtext\u001B[39m, and normal", "Green: " + Chalk.on("text").green() + ", and normal");
         checkAndPrint("BG red", "Back: \u001B[41mtext\u001B[49m, and normal", "Back: " + Chalk.on("text").bgRed() + ", and normal");
         checkAndPrint("FG magenta underlined", "Combined \u001B[4m\u001B[35mtext\u001B[39m\u001B[24m, and normal", "Combined " + Chalk.on("text").magenta().underline() + ", and normal");
+
+        checkAndPrint("BG white, FG grey", Chalk.on("Gray text with white background").gray().bgWhite().toString(), "");
     }
 
     private void checkAndPrint(final String message, final String expected, final String actual) {
@@ -52,6 +56,7 @@ public class Test {
         System.out.println(message + ": " + expected + " : " + actual);
     }
 
+    @SuppressWarnings("deprecation")
     public static void main(String[] args) {
 
         Test chalkTest = new Test();
