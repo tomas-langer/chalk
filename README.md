@@ -36,7 +36,7 @@ System.out.println("This message is " + Chalk.on("IMPORTANT").red().underline())
 
 will print:
 
-![screenshot](doc/colored_example.png)
+![screenshot](/doc/colored_example.png)
 
 There are some system properties to control behavior:
 * jansi.strip - if set to "true", colors will not be sent to output (on any environment)
