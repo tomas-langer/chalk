@@ -4,6 +4,13 @@ import org.fusesource.jansi.AnsiConsole;
 
 /**
  * Chalk allows you to color output going to console.
+ * To start, use {@link #on(String)} and then chain modification.
+ * Obviously one background and one foreground color may be used (such as {@link #red()} and {@link #bgRed()},
+ * in addition one or more modifiers may be used ({@link #bold()}, {@link #underline()}, {@link #inverse()}).
+ *
+ * <code>
+ *     System.out.println("This message is " + Chalk.on("IMPORTANT").red().underline());
+ * </code>
  *
  * User: tomas.langer
  * Date: 3.12.2015

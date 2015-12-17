@@ -10,6 +10,9 @@ package com.github.tomaslanger;
  * @author Tomas Langer (tomas.langer@gmail.com)
  */
 public class Ansi {
+    /**
+     * Common methods for all types of Ansi modifications.
+     */
     public interface AnsiCode {
         int getBeginInt();
 
@@ -25,7 +28,8 @@ public class Ansi {
     }
 
     /**
-     * Only kept the ones that work on most environments
+     * Modifiers of output that are not related to color.
+     * Only kept the ones that work on most environments.
      */
     public enum Modifier implements AnsiCode {
 //        RESET(0, 0),
@@ -53,6 +57,9 @@ public class Ansi {
         }
     }
 
+    /**
+     * Foreground colors.
+     */
     public enum Color implements AnsiCode {
         BLACK(30),
         RED(31),
@@ -85,6 +92,9 @@ public class Ansi {
         }
     }
 
+    /**
+     * Background colors.
+     */
     public enum BgColor implements AnsiCode {
         BLACK(40),
         RED(41),
