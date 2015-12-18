@@ -22,7 +22,6 @@ public class Chalk {
     private static boolean colorEnabled;
 
     static {
-
         try {
             AnsiConsole.systemInstall();
             colorEnabled = AnsiConsole.isColorEnabled();
@@ -33,7 +32,6 @@ public class Chalk {
     }
 
     private String text;
-
 
     private Chalk(final String text) {
         this.text = text;
@@ -51,7 +49,7 @@ public class Chalk {
         }
     }
 
-    public static void setColorEnabled(final boolean colorEnabled) {
+    public static synchronized void setColorEnabled(final boolean colorEnabled) {
         Chalk.colorEnabled = colorEnabled;
     }
 
