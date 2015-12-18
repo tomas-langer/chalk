@@ -1,7 +1,5 @@
-package com.github.tomaslanger;
+package com.github.tomaslanger.chalk;
 
-import org.fusesource.jansi.AnsiConsole;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

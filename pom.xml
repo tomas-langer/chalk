@@ -132,7 +132,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.github.tomaslanger.Features</mainClass>
+              <mainClass>com.github.tomaslanger.chalk.Features</mainClass>
             </manifest>
           </archive>
         </configuration>

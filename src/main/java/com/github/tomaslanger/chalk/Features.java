@@ -1,4 +1,4 @@
-package com.github.tomaslanger;
+package com.github.tomaslanger.chalk;
 
 import java.io.UnsupportedEncodingException;
 

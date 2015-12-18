@@ -1,4 +1,4 @@
-package com.github.tomaslanger;
+package com.github.tomaslanger.chalk;
 
 import org.fusesource.jansi.AnsiConsole;
 
@@ -25,7 +25,7 @@ public class Chalk {
         try {
             AnsiConsole.systemInstall();
             colorEnabled = AnsiConsole.isColorEnabled();
-        } catch (java.lang.UnsatisfiedLinkError e) {
+        } catch (UnsatisfiedLinkError e) {
             //this is some kind of non-windoze system, assume support.
             colorEnabled = !Boolean.getBoolean("jansi.strip");
         }
