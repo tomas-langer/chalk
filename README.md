@@ -24,7 +24,7 @@ As soon as first release is available, we shall have it on Maven
      <dependency>
        <groupId>com.github.tomas-langer</groupId>
        <artifactId>chalk</artifactId>
-       <version>1.0.0</version>
+       <version>1.0.1</version>
      </dependency>
 
 # Usage
