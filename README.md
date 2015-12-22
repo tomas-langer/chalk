@@ -18,13 +18,12 @@ After looking at [Chalk for javascript](https://github.com/chalk/chalk), I have 
 to implement a similar solution in Java.
 
 ## Install
-As soon as first release is available, we shall have it on Maven
- central.
+We are on maven central:
 
      <dependency>
        <groupId>com.github.tomas-langer</groupId>
        <artifactId>chalk</artifactId>
-       <version>1.0.1</version>
+       <version>1.0.2</version>
      </dependency>
 
 # Usage

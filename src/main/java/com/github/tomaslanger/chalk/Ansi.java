@@ -127,4 +127,99 @@ public final class Ansi {
         }
     }
 
+
+    public static String cursorUp() {
+        return cursorUp(1);
+    }
+
+    public static String cursorUp(int rows) {
+        return escape('A', rows);
+    }
+
+    public static String cursorDown() {
+        return cursorDown(1);
+    }
+
+    public static String cursorDown(int rows) {
+        return escape('B', rows);
+    }
+
+    public static String cursorRight() {
+        return cursorRight(1);
+    }
+
+    public static String cursorRight(int cols) {
+        return escape('C', cols);
+    }
+
+    public static String cursorLeft() {
+        return cursorLeft(1);
+    }
+
+    public static String cursorLeft(int cols) {
+        return escape('D', cols);
+    }
+
+    public static String setCursorPosition(int x, int y) {
+        return escape('H', y, x);
+    }
+
+    public static String eraseScreen() {
+        return escape('J', 2);
+    }
+
+    /**
+     * Erase from cursor down
+     */
+    public static String eraseScreenDown() {
+        return escape('J', 0);
+    }
+
+    /**
+     * Erase from cursor up
+     */
+    public static String eraseScreenUp() {
+        return escape('J', 1);
+    }
+
+    public static String eraseLine() {
+        return escape('K', 2);
+    }
+
+    /**
+     * From line start to cursor
+     */
+    public static String eraseLineStart() {
+        return escape('K', 1);
+    }
+
+    /**
+     * From cursor to line end
+     */
+    public static String eraseLineEnd() {
+        return escape('K', 0);
+    }
+
+
+    private static String escape(char command, int... options) {
+        StringBuilder sb = new StringBuilder(6);
+        sb.append('\u001b');
+        sb.append('[');
+        optionsToValue(sb, options);
+        sb.append(command);
+
+        return sb.toString();
+    }
+
+    private static void optionsToValue(final StringBuilder sb, final int[] options) {
+        if (options.length == 1) {
+            sb.append(options[0]);
+        } else {
+            sb.append(options[0]);
+            for (int i = 1; i < options.length; i++) {
+                sb.append(';');
+                sb.append(options[i]);
+            }
+        }
+    }
 }

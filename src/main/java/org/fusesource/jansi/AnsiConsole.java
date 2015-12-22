@@ -34,6 +34,7 @@ import static org.fusesource.jansi.internal.CLibrary.*;
  */
 public class AnsiConsole {
     private static boolean isColorEnabled = true;
+    private static boolean isCommandEnabled = true;
 
     public static final PrintStream system_out = System.out;
     public static final PrintStream out = new PrintStream(wrapOutputStream(system_out));
@@ -59,17 +60,21 @@ public class AnsiConsole {
         // the ansi escapes.
         if (Boolean.getBoolean("jansi.strip")) {
             isColorEnabled = false;
+            isCommandEnabled = false;
             return new AnsiOutputStream(stream);
         }
 
         //If we are in jenkins or hudson, use html output
         Map<String, String> env = System.getenv();
         if (env.containsKey("HUDSON_URL") || env.containsKey("JENKINS_URL")) {
+            isCommandEnabled = false;
             return stream;
         }
 
         Properties sysProps = System.getProperties();
         if (sysProps.containsKey("idea.launcher.bin.path")) {
+            //idea currently supports coloring only
+            isCommandEnabled = false;
             return stream;
         }
 
@@ -86,6 +91,7 @@ public class AnsiConsole {
 
             // Use the ANSIOutputStream to strip out the ANSI escape sequences.
             isColorEnabled = false;
+            isCommandEnabled = false;
             return new AnsiOutputStream(stream);
         }
 
@@ -99,6 +105,7 @@ public class AnsiConsole {
             int rc = isatty(fileno);
             if (!forceColored && rc == 0) {
                 isColorEnabled = false;
+                isCommandEnabled = false;
                 return new AnsiOutputStream(stream);
             }
 
@@ -170,5 +177,9 @@ public class AnsiConsole {
 
     public static boolean isColorEnabled() {
         return isColorEnabled;
+    }
+
+    public static boolean isCommandEnabled() {
+        return isCommandEnabled;
     }
 }

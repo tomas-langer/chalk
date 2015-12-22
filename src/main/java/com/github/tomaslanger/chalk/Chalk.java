@@ -20,14 +20,20 @@ import org.fusesource.jansi.AnsiConsole;
  */
 public class Chalk {
     private static boolean colorEnabled;
+    private static boolean commandEnabled;
 
     static {
         try {
             AnsiConsole.systemInstall();
             colorEnabled = AnsiConsole.isColorEnabled();
+            commandEnabled = AnsiConsole.isCommandEnabled();
         } catch (UnsatisfiedLinkError e) {
             //this is some kind of non-windoze system, assume support.
             colorEnabled = !Boolean.getBoolean("jansi.strip");
+            //assume this is a console and command is enabled
+            //TODO make the check here again against Hudson, Jenkins, Idea etc -> externalize to a class that
+            //cannot fail initialization
+            commandEnabled = colorEnabled;
         }
     }
 
@@ -184,5 +190,14 @@ public class Chalk {
     @Override
     public int hashCode() {
         return text.hashCode();
+    }
+
+
+    public static boolean isColorEnabled() {
+        return colorEnabled;
+    }
+
+    public static boolean isCommandEnabled() {
+        return commandEnabled;
     }
 }
