@@ -34,7 +34,6 @@ public final class Ansi {
      * Only kept the ones that work on most environments.
      */
     public enum Modifier implements AnsiCode {
-//        RESET(0, 0),
         BOLD(1, 22), // 21 isn't widely supported and 22 does the same thing
         UNDERLINE(4, 24),
         INVERSE(7, 27);
