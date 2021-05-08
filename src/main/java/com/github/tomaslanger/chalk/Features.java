@@ -1,7 +1,5 @@
 package com.github.tomaslanger.chalk;
 
-import java.io.UnsupportedEncodingException;
-
 /**
  * Class to show what this tool can do. 
  * User: Tomas.Langer
@@ -11,6 +9,11 @@ import java.io.UnsupportedEncodingException;
  * @author Tomas Langer (tomas.langer@gmail.com)
  */
 public class Features {
+    public static void main(String[] args) {
+        Features chalkTest = new Features();
+        chalkTest.showFeatures();
+    }
+
     public void showFeatures() {
         //this line is needed to initialize the system (windows).
         Chalk.on("test");
@@ -32,7 +35,6 @@ public class Features {
         System.out.println("FG Gray " + Chalk.on("text").apply(Ansi.Color.GRAY));
         System.out.println("FG Grey " + Chalk.on("text").apply(Ansi.Color.GREY));
 
-
         System.out.println("BG Blue " + Chalk.on("text").apply(Ansi.BgColor.BLUE));
         System.out.println("BG Black " + Chalk.on("text").apply(Ansi.BgColor.BLACK));
         System.out.println("BG Red " + Chalk.on("text").apply(Ansi.BgColor.RED));
@@ -48,14 +50,9 @@ public class Features {
         System.out.println("This message is " + Chalk.on("IMPORTANT").red().underline());
         System.out.println("System.out.println(\"My \" + Chalk.on(\"life\").bgBlue().white().bold() + \" is good\");");
         System.out.println("My " + Chalk.on("life").bgBlue().white().bold() + " is good");
-        System.out.println("System.out.println(\"More \" + Chalk.on(\"burgers\").yellow().inverse() + \" on \" + Chalk.on(\"the way\").bgGreen().yellow());");
+        System.out.println(
+                "System.out.println(\"More \" + Chalk.on(\"burgers\").yellow().inverse() + \" on \" + Chalk.on(\"the way\")"
+                        + ".bgGreen().yellow());");
         System.out.println("More " + Chalk.on("burgers").yellow().inverse() + " on " + Chalk.on("the way").bgGreen().yellow());
-    }
-
-    
-
-    public static void main(String[] args) throws UnsupportedEncodingException {
-        Features chalkTest = new Features();
-        chalkTest.showFeatures();
     }
 }
